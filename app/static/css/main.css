@@ -1,0 +1,85 @@
+/* Add capacity for smooth scrolling */
+.html{
+    scroll-behavior: smooth;
+}
+
+/*Sets initial height and colour for masthead. Colour then changed by slider and script. */
+.masthead{
+    height:100vh;
+    background: hsl(196,33%,60%);
+
+}
+
+.masthead-text{
+    margin-top:30vh;
+}
+
+/* Styling for the slider bar. */
+.form-range{
+    margin-top:30px;
+    width:60vw;
+    height:30px;
+    border-radius:0px;
+    outline:none;
+}
+
+/* Styling for the slider circle. */
+.form-range::-webkit-slider-thumb{
+    width:30px;
+    height:30px;
+    margin-top:-12px;
+    border-radius:30px;
+    background-color:white;
+}
+
+.scrollDownBtn{
+    margin-top:25vh;
+}
+
+/* Centres percentage value properly */
+.percentPrediction{
+    margin-left:20px;
+}
+
+.explainer{
+    min-height:90vh;
+}
+
+#explainerTitle{
+    margin-top:10vh;
+}
+
+/*This code creates the red and white definition boxes */
+.definitionBox{
+    margin-top:25px;
+    margin-bottom:30px;
+}
+
+.definitionBox h5{
+    background-color: tomato;
+    color:#f8f9fa;
+    margin-bottom:0px;
+    padding:9px;
+}
+
+.definitionBox p{
+    background-color:#f8f9fa;
+    color:#212529;
+    padding:9px;
+    margin-bottom:0px;
+}
+/* */
+
+.outsideView{
+    background-color:#77A9BB;
+}
+
+.outsideViewTitle{
+    margin-top:17vh;
+    margin-bottom:3vh;
+}
+
+.moreinfobox {
+    min-height:500px;
+    margin-bottom:20px;
+}

@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width initial-scale=1">
+        <meta name="description" content=""><!--SEO description-->
+        <meta name="author" content=""><!--SEO author-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="{{url_for('static',filename='css/main.css')}}" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <title>Making better predictions</title>
+    </head>
+    <body>    
+        <!--Slide 1-->
+        <section class="masthead" id="rainBackground">
+            <div class="container text-light">
+                <div class="row">
+                    <div class="col-12 text-center masthead-text">
+                        <h1 class="d-block">Think carefully:</h1>
+                        <h1 class="d-block">How likely is it to rain in the next hour?</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <div class="slidecontainer">
+                            <input type="range" min="0" max="100" value="0" class="form-range" id="rainSlider">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h3 class="display-3 d-block percentPrediction mt-3"><span id="prediction"></span>%</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 scrollDownBtn">
+                        <a href="#substitution"><img src="{{url_for('static',filename='img/scrolldown.png')}}" class="d-block mx-auto animate__animated animate__bounce animate__infinite"></a>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Slide 2-->
+        <section class="explainer bg-dark" id="substitution">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1 class="display-1 text-light" id="explainerTitle">How was the weather?</h1>>
+                    </div>
+                <div class="row mb-5">
+                    <div class="col-md-6 text-light">
+                        <h4 class="h4">Chances are you just made your decision using <em>substitution</em>.</h4>
+                        
+                        <div class="definitionBox shadow">
+                            <h5>Substitution</h5>
+                            <p>Replacing a difficult question with a much simpler one.<br/><br/><em>eg replacing 'will it rain?' with 'how grey does the sky look?'</em></p>
+                        </div>
+                        <p>Maybe you looked out of the window. Maybe you remembered a weather report you looked at earlier in the day.
+                            Maybe you just had fun playing with the slider!
+                            It only took you a few seconds to choose a prediction that <em>felt</em> right.</p>
+                        <p>All of these are <em>easy</em> ways to make the prediction. But what if we want a <em>better</em> way?</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Slide 3-->
+        <section class="outsideView">
+            <div class="container min-vh-100">
+
+                <div class="row">
+                    <div class="col">
+                        <h1 class="display-5 text-light outsideViewTitle">What if you knew how much it had rained before?</h1>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="definitionBox shadow" id="outsideBox">
+                            <h5>The outside view</h5>
+                            <p>A set of reference cases to help you make a prediction.</p>
+                        </div>
+                        <div class="text-dark bg-light p-3 shadow">
+                            <p><strong>Taking <em>the outside view</em> helps us make predictions in a better way. </strong></p>
+                            <ul>
+                                <li>The average rainfall on {{showDate}} for the last 75 years was {{averageRainToday}}mm.</li>
+                                <li>The average rainfall on any day in the UK is {{averageRain}}mm</li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-6 mb-5">
+                            <p class="text-dark bg-light p-3 shadow mb-0 mt-4"><strong>Here's the average rainfall for {{showDate}} in the last 10 years:</strong></h5>
+                            <table class="table table-light table-striped table-hover text-center rainTable shadow">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col">Year</th>
+                                        <th scope="col">Rain(mm)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for value in rainHistory %}
+                                    <tr>
+                                        <td>
+                                            {{value[0]}}
+                                        </td>
+                                        <td>
+                                            {{value[1]}}
+                                        </td>
+                                    </tr>
+
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--Slide 4-->
+        <section class="explainer bg-dark">
+            <div class="container">
+                <div class="row">
+                    <h1 class="display-5 text-light outsideViewTitle">Want to know more?</h1>
+                </div>
+                <div class="row">
+                    <!--Desktop version-->
+                    <div class="col-lg-6 d-none d-md-block">
+                        
+                        <div class="container bg-white shadow p-5 moreinfobox">
+                            <h4 class="h4">Watch a primer from McKinsey</h4>
+                            <div class="ratio ratio-16x9">
+                                <iframe src="https://www.youtube.com/embed/gw9DVOd0WTE" title="The Inside View Vs the Outside View" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Mobile version-->
+                    <div class="row ratio ratio-16x9 d-block d-sm-none mx-auto mb-5 shadow">
+                        <iframe src="https://www.youtube.com/embed/gw9DVOd0WTE" title="The Inside View Vs the Outside View" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <!---->
+
+                    <div class="col-lg-6">
+                        <div class="container bg-white shadow p-5 moreinfobox">
+                            <h4 class="h4">Read in depth about making better predictions:</h4>
+                            <div class="row d-flex align-items-center">
+                                <div class="col-md-6">
+                                    <img src="{{url_for('static',filename='img/superforecasting.jpg')}}" class="w-75 mx-auto d-block p-3">
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="align-middle p-1"><em>Everything we do involves forecasts about how the future will unfold. Whether buying a new house or changing job, designing a new product or getting married, our decisions are governed by implicit predictions of how things are likely to turn out. The problem is, we're not very good at it.</em></p>
+                                    <p><a href="https://www.amazon.co.uk/Superforecasting-Science-Prediction-Philip-Tetlock/dp/1847947158" target="_blank">Amazon</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+
+                </div>
+            </div>
+        </section>
+       
+        <script src="{{url_for('static',filename='js/gradients.js')}}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </body>
+</html>
